@@ -1,31 +1,32 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getDetail } from '../redux/actions';
+import { useParams } from "react-router-dom"
+import { getDetail } from "../redux/actions";
 
-function Detalle({userDetail, getDetail}) {
-    const id = useParams(); 
+function Detail({ getDetail, detail }) {
+    const { id } = useParams(); // Retorna un objeto
+    //console.log(id)
 
     useEffect(() => {
-        getDetail(id)
+       getDetail(id) 
     }, [id, getDetail])
 
     return (
-        <div>
-            { userDetail ? 
-                    <div>
-                        Llegó el usuarios
-                    </div>
-                : <h1>No hay detalle</h1>
+        <>
+            { detail ? 
+                <div>
+                    USUARIO
+                </div>
+                : <h4>No hay detalle</h4>
             }
-        </div>
+        </>
     )
 }
 
 function mapStateToProps(state) {
     return {
-        userDetail: state.userDetail
+        detail: state.detail
     }
 }
 
-export default connect(mapStateToProps, { getDetail })(Detalle);
+export default connect(mapStateToProps, { getDetail })(Detail)

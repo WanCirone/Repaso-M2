@@ -1,24 +1,24 @@
-import { GET_DETAIL, GET_USERS } from "./actions";
+import { GET_USERS, GET_DETAIL } from "./actions"
 
 const initialState = {
-    users: [], //[{}, {}, {}, {}, {}]
-    userDetail: {}
+    users: [], //[{}, {}, {}, {}]
+    detail: {}
 }
 
-export default function reducer(state = initialState, action) { //{type: GET_USERS, payload: users}
+export default function reducer(state = initialState, action) {
     switch(action.type) {
         case GET_USERS: 
             return {
-                ...state, // copio el estado actual 
+                ...state,
                 users: state.users.concat(action.payload)
             }
-        case GET_DETAIL: 
-            let user = state.users.filter(u => u.id === parseInt(action.payload.id))
+        case GET_DETAIL:
             return {
                 ...state,
-                userDetail: user[0]
+                detail: action.payload
             }
-        default:
-            return state;            
+        default: 
+            return state
     }
 }
+

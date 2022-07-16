@@ -1,29 +1,30 @@
-import { Route } from 'react-router-dom';
+import React from 'react';
 import Boton from './components/Boton';
-import Detalle from './components/Detalle';
+import { Route, Switch } from 'react-router-dom'; 
 import Users from './components/Users';
+import Detail from './components/Detail';
+import Form from './components/Form';
 
 function App() {
   return (
     <>
-    <Route exact path='/'>
-      <Boton/>
-    </Route>
-    <Route exact path='/users'>
-      <Users/>
-    </Route>
-    <Route path='/users/:id'>
-      <Detalle/>
-    </Route>
+    <Switch>
+      <Route exact path='/'>
+        <Boton text='Traer Usuarios'/>
+        <Boton text='Crear Usuario'/>
+      </Route>
+      <Route exact path='/users'>
+        <Users/>
+      </Route>
+      <Route path='/users/:id'>
+        <Detail/>
+      </Route>
+      <Route path='/new'>
+        <Form/>
+      </Route>
+    </Switch>
     </>
   );
 }
 
 export default App;
-
-
-// Botón --> Traer usuarios --> /users
-// /users --> Users --> todos los usuarios(redux)
-
-// crear usuario --> component --> fomulario para crear usuario 
-

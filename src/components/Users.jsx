@@ -1,14 +1,17 @@
 import { connect } from "react-redux";
+//import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function Users(props) {
+function Users({users}) { //undefined
+    //const users = useSelector(state => state.users)
+
     return (
         <div>
-            { props.allUsers ?  props.allUsers.map(u => {
+            { users && users.map(u => {
                 return (
-                    <div>
+                    <div key={u.id}>
                         <Link to={`/users/${u.id}`}>
-                            <h3>{u.username}</h3>
+                            <h4>{u.username}</h4>
                         </Link>
                         <ul>
                             <li>{u.name}</li>
@@ -18,14 +21,14 @@ function Users(props) {
                         </ul>
                     </div>
                 )
-            }) :  <h1>No hay usuarios</h1> }
+            })}
         </div>
     )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state) { //Recibe el state de redux
     return {
-        allUsers: state.users
+        users: state.users
     }
 }
 
